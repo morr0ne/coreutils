@@ -16,7 +16,7 @@ pub fn yes(args: Args, multicall: bool) -> Result {
     let matches = new_command(
         "yes",
         "Repeatedly output a line with all specified STRING(s), or 'y'.",
-        multicall
+        multicall,
     )
     .arg(Arg::new("STRING").action(ArgAction::Append))
     .get_matches_from(args);
@@ -32,4 +32,3 @@ pub fn yes(args: Args, multicall: bool) -> Result {
         println!("{value}")
     }
 }
-
