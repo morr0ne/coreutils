@@ -28,9 +28,10 @@ pub fn call_commands(tokens: TokenStream) -> TokenStream {
         })
     }
     // #(#fields),*
-   
+
     quote! {
 
          "whoami" => commands::whoami(args, true)
-    }.into()
+    }
+    .into()
 }

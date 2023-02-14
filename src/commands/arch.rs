@@ -11,12 +11,7 @@ use libc::{uname, utsname};
 use crate::{util::new_command, Error, Result};
 
 pub fn arch(args: Args, multicall: bool) -> Result {
-    new_command(
-        "arch",
-        "Prints the machine architecture",
-        multicall,
-    )
-    .get_matches_from(args);
+    new_command("arch", "Prints the machine architecture", multicall).get_matches_from(args);
 
     let mut utsname = MaybeUninit::<utsname>::uninit();
     let result = unsafe { uname(utsname.as_mut_ptr()) };
