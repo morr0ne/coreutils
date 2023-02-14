@@ -5,6 +5,12 @@ members = ["macros"]
 name = "coreutils"
 version = "0.0.1"
 edition = "2021"
+license = "GPL-3.0"
+authors = ["Federico Maria Morrone <contact@morrone.dev>"]
+description = "GNU's coreutils rewritten in rust"
+repository = "https://github.com/morr0ne/coreutils"
+readme = "README.md"
+publish = false
 
 [dependencies]
 coreutils_macros = { version = "0.0.1", path = "./macros"}
