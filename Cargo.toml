@@ -1,0 +1,49 @@
+[workspace]
+members = ["macros"]
+
+[package]
+name = "coreutils"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+coreutils_macros = { version = "0.0.1", path = "./macros"}
+clap = { version = "4.1.4", default-features = false, features = ["std", "help", "cargo"] }
+libc = { version = "0.2.139", optional = true }
+nix = { version = "0.26.2", default-features = false, features = ["term"], optional = true }
+# static_args = "0.2.1"
+
+[features]
+arch = ["dep:libc"]
+basename = []
+false = []
+true = []
+tty = ["dep:nix"]
+who = []
+whoami = ["dep:libc", "dep:nix"]
+yes = []
+
+[[bin]]
+name = "arch"
+path = "bin/arch.rs"
+required-features = ["arch"]
+
+[[bin]]
+name = "whoami"
+path = "bin/whoami.rs"
+required-features = ["whoami"]
+
+[[bin]]
+name = "yes"
+path = "bin/yes.rs"
+required-features = ["yes"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.bloat]
+inherits = "release"
+strip = false
