@@ -17,10 +17,13 @@ coreutils_macros = { version = "0.0.1", path = "./macros"}
 clap = { version = "4.1.4", default-features = false, features = ["std", "help", "cargo"] }
 libc = { version = "0.2.139", optional = true }
 nix = { version = "0.26.2", default-features = false, features = ["term"], optional = true }
+blake2 = { version = "0.10.6", optional = true }
+hex = { version = "0.4.3", optional = true }
 # static_args = "0.2.1"
 
 [features]
 arch = ["dep:libc"]
+b2sum = ["dep:blake2", "dep:hex"]
 basename = []
 false = []
 true = []
@@ -35,6 +38,11 @@ path = "bin/arch.rs"
 required-features = ["arch"]
 
 [[bin]]
+name = "b2sum"
+path = "bin/b2sum.rs"
+required-features = ["b2sum"]
+
+[[bin]]
 name = "whoami"
 path = "bin/whoami.rs"
 required-features = ["whoami"]
@@ -43,6 +51,7 @@ required-features = ["whoami"]
 name = "yes"
 path = "bin/yes.rs"
 required-features = ["yes"]
+
 
 [profile.release]
 lto = true
