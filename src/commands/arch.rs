@@ -1,13 +1,13 @@
 use std::{
     env::Args,
     ffi::CStr,
-    io::{self, stdout, Write},
+    io::{stdout, Write},
     process::ExitCode,
 };
 
 use crate::{
     util::{get_uname, new_command},
-    Error, Result,
+    Result,
 };
 
 pub fn arch(args: Args, multicall: bool) -> Result {
