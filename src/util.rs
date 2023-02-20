@@ -1,4 +1,4 @@
-use std::mem::MaybeUninit;
+use std::{io::Error as IoError, mem::MaybeUninit};
 
 use clap::{crate_version, Command};
 use libc::{uname, utsname};
@@ -21,12 +21,12 @@ macro_rules! define_command_bin {
 }
 
 // #[cfg(feature = "libc")]
-pub fn get_uname() -> Option<utsname> {
+pub fn get_uname() -> Result<utsname, IoError> {
     let mut utsname = MaybeUninit::<utsname>::uninit();
 
     if unsafe { uname(utsname.as_mut_ptr()) } == 0 {
-        Some(unsafe { utsname.assume_init() })
+        Ok(unsafe { utsname.assume_init() })
     } else {
-        None
+        Err(IoError::last_os_error())
     }
 }
