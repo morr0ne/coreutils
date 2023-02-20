@@ -12,6 +12,8 @@ mod who;
 mod whoami;
 #[cfg(feature = "yes")]
 mod yes;
+#[cfg(feature = "b2sum")]
+mod b2sum;
 
 #[cfg(feature = "arch")]
 pub use arch::arch;
@@ -23,3 +25,5 @@ pub use tty::tty;
 pub use whoami::whoami;
 #[cfg(feature = "yes")]
 pub use yes::yes;
+#[cfg(feature = "b2sum")]
+pub use b2sum::b2sum;
