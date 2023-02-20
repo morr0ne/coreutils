@@ -1,7 +1,7 @@
 use std::{
     env::Args,
     ffi::CStr,
-    io::{self, stdout, Write},
+    io::{stdout, Write},
     process::ExitCode,
 };
 
@@ -9,7 +9,7 @@ use clap::{Arg, ArgAction};
 
 use crate::{
     util::{get_uname, new_command},
-    Error, Result,
+    Result,
 };
 
 pub fn uname(args: Args, multicall: bool) -> Result {
