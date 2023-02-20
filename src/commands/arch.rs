@@ -2,23 +2,18 @@ use std::{
     env::Args,
     ffi::CStr,
     io::{self, stdout, Write},
-    mem::MaybeUninit,
     process::ExitCode,
 };
 
-use libc::{uname, utsname};
-
-use crate::{util::new_command, Error, Result};
+use crate::{
+    util::{get_uname, new_command},
+    Error, Result,
+};
 
 pub fn arch(args: Args, multicall: bool) -> Result {
     new_command("arch", "Prints the machine architecture", multicall).get_matches_from(args);
 
-    let mut utsname = MaybeUninit::<utsname>::uninit();
-    let result = unsafe { uname(utsname.as_mut_ptr()) };
-
-    if result == 0 {
-        // This is safe because uname returned 0 meaning it succeded
-        let utsname = unsafe { utsname.assume_init() };
+    if let Some(utsname) = get_uname() {
         let machine = unsafe { CStr::from_ptr(utsname.machine.as_ptr()) };
 
         let mut lock = stdout().lock();
