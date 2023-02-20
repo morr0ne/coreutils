@@ -33,8 +33,6 @@ pub fn b2sum(args: Args, multicall: bool) -> Result {
         .get_one::<OsString>("FILE")
         .expect("Failed to get arg");
 
-    // dbg!(file);
-
     let file = fs::read(file).expect("Failed to read file");
 
     let mut hasher = Blake2b512::new();
