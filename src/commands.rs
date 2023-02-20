@@ -10,6 +10,8 @@ mod r#true;
 mod tty;
 #[cfg(feature = "uname")]
 mod uname;
+#[cfg(feature = "uptime")]
+mod uptime;
 #[cfg(feature = "who")]
 mod who;
 #[cfg(feature = "whoami")]
@@ -27,6 +29,8 @@ pub use r#true::r#true;
 pub use tty::tty;
 #[cfg(feature = "uname")]
 pub use uname::uname;
+#[cfg(feature = "uptime")]
+pub use uptime::uptime;
 #[cfg(feature = "whoami")]
 pub use whoami::whoami;
 #[cfg(feature = "yes")]

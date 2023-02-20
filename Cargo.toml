@@ -29,6 +29,7 @@ false = []
 true = []
 tty = ["dep:nix"]
 uname = ["dep:libc"]
+uptime = []
 who = []
 whoami = ["dep:libc", "dep:nix"]
 yes = []
@@ -47,6 +48,11 @@ required-features = ["b2sum"]
 name = "uname"
 path = "bin/uname.rs"
 required-features = ["uname"]
+
+[[bin]]
+name = "uptime"
+path = "bin/uptime.rs"
+required-features = ["uptime"]
 
 [[bin]]
 name = "whoami"

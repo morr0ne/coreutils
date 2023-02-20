@@ -21,6 +21,8 @@ fn main() -> Result {
             "true" => commands::r#true(args, true),
             #[cfg(feature = "uname")]
             "uname" => commands::uname(args, true),
+            #[cfg(feature = "uptime")]
+            "uptime" => commands::uptime(args, true),
             #[cfg(feature = "yes")]
             "yes" => commands::yes(args, true),
             command => Err(Error::UnknownCommand(command.to_string())),
