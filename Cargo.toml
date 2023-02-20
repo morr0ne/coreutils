@@ -28,6 +28,7 @@ basename = []
 false = []
 true = []
 tty = ["dep:nix"]
+uname = ["dep:libc"]
 who = []
 whoami = ["dep:libc", "dep:nix"]
 yes = []
@@ -41,6 +42,11 @@ required-features = ["arch"]
 name = "b2sum"
 path = "bin/b2sum.rs"
 required-features = ["b2sum"]
+
+[[bin]]
+name = "uname"
+path = "bin/uname.rs"
+required-features = ["uname"]
 
 [[bin]]
 name = "whoami"
