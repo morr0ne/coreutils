@@ -33,6 +33,8 @@ pub use b2sum::b2sum;
 pub use base32::base32;
 #[cfg(feature = "base64")]
 pub use base64::base64;
+#[cfg(feature = "basename")]
+pub use basename::basename;
 #[cfg(feature = "basenc")]
 pub use basenc::basenc;
 #[cfg(feature = "true")]

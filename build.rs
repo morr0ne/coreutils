@@ -1,7 +1,7 @@
 use std::fs;
 
 const COMMANDS: &[&str] = &[
-    "arch", "b2sum", "base32", "base64", "basenc", "basename", "false", "true", "tty", "uname",
+    "arch", "b2sum", "base32", "base64", "basename", "basenc", "false", "true", "tty", "uname",
     "uptime", "who", "whoami", "yes",
 ];
 
