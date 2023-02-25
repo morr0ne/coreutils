@@ -15,6 +15,8 @@ fn main() -> Result {
             "base32" => commands::base32(args, true),
             #[cfg(feature = "base64")]
             "base64" => commands::base64(args, true),
+            #[cfg(feature = "basename")]
+            "basename" => commands::basename(args, true),
             #[cfg(feature = "basenc")]
             "basenc" => commands::basenc(args, true),
             #[cfg(feature = "whoami")]

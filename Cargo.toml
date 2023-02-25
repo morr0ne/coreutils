@@ -59,6 +59,11 @@ path = "bin/base64.rs"
 required-features = ["base64"]
 
 [[bin]]
+name = "basenane"
+path = "bin/basenane.rs"
+required-features = ["basenane"]
+
+[[bin]]
 name = "basenc"
 path = "bin/basenc.rs"
 required-features = ["basenc"]
