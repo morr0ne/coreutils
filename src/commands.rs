@@ -2,6 +2,10 @@
 mod arch;
 #[cfg(feature = "b2sum")]
 mod b2sum;
+#[cfg(feature = "base32")]
+mod base32;
+#[cfg(feature = "base64")]
+mod base64;
 #[cfg(feature = "basename")]
 mod basename;
 #[cfg(feature = "true")]
@@ -23,6 +27,10 @@ mod yes;
 pub use arch::arch;
 #[cfg(feature = "b2sum")]
 pub use b2sum::b2sum;
+#[cfg(feature = "base32")]
+pub use base32::base32;
+#[cfg(feature = "base64")]
+pub use base64::base64;
 #[cfg(feature = "true")]
 pub use r#true::r#true;
 #[cfg(feature = "tty")]
