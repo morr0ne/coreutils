@@ -11,6 +11,10 @@ fn main() -> Result {
             "arch" => commands::arch(args, true),
             #[cfg(feature = "b2sum")]
             "b2sum" => commands::b2sum(args, true),
+            #[cfg(feature = "base32")]
+            "base32" => commands::base32(args, true),
+            #[cfg(feature = "base64")]
+            "base64" => commands::base64(args, true),
             #[cfg(feature = "whoami")]
             "whoami" => commands::whoami(args, true),
             #[cfg(feature = "tty")]

@@ -19,11 +19,14 @@ libc = { version = "0.2.139", optional = true }
 nix = { version = "0.26.2", default-features = false, features = ["term"], optional = true }
 blake2 = { version = "0.10.6", optional = true }
 hex = { version = "0.4.3", optional = true }
+data-encoding = { version = "2.3.3", optional = true }
 # static_args = "0.2.1"
 
 [features]
 arch = ["dep:libc"]
 b2sum = ["dep:blake2", "dep:hex"]
+base32 = ["dep:data-encoding"]
+base64 = ["dep:data-encoding"]
 basename = []
 false = []
 true = []
@@ -43,6 +46,16 @@ required-features = ["arch"]
 name = "b2sum"
 path = "bin/b2sum.rs"
 required-features = ["b2sum"]
+
+[[bin]]
+name = "base32"
+path = "bin/base32.rs"
+required-features = ["base32"]
+
+[[bin]]
+name = "base64"
+path = "bin/base64.rs"
+required-features = ["base64"]
 
 [[bin]]
 name = "uname"

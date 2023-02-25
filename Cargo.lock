@@ -59,6 +59,7 @@ dependencies = [
  "blake2",
  "clap",
  "coreutils_macros",
+ "data-encoding",
  "hex",
  "libc",
  "nix",
@@ -82,6 +83,12 @@ dependencies = [
  "generic-array",
  "typenum",
 ]
+
+[[package]]
+name = "data-encoding"
+version = "2.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "23d8666cb01533c39dde32bcbab8e227b4ed6679b2c925eba05feabea39508fb"
 
 [[package]]
 name = "digest"
