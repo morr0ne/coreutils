@@ -8,6 +8,8 @@ mod base32;
 mod base64;
 #[cfg(feature = "basename")]
 mod basename;
+#[cfg(feature = "basenc")]
+mod basenc;
 #[cfg(feature = "true")]
 mod r#true;
 #[cfg(feature = "tty")]
@@ -31,6 +33,8 @@ pub use b2sum::b2sum;
 pub use base32::base32;
 #[cfg(feature = "base64")]
 pub use base64::base64;
+#[cfg(feature = "basenc")]
+pub use basenc::basenc;
 #[cfg(feature = "true")]
 pub use r#true::r#true;
 #[cfg(feature = "tty")]
