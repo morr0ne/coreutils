@@ -27,6 +27,7 @@ arch = ["dep:libc"]
 b2sum = ["dep:blake2", "dep:hex"]
 base32 = ["dep:data-encoding"]
 base64 = ["dep:data-encoding"]
+basenc = ["dep:data-encoding"]
 basename = []
 false = []
 true = []
@@ -56,6 +57,11 @@ required-features = ["base32"]
 name = "base64"
 path = "bin/base64.rs"
 required-features = ["base64"]
+
+[[bin]]
+name = "basenc"
+path = "bin/basenc.rs"
+required-features = ["basenc"]
 
 [[bin]]
 name = "uname"
