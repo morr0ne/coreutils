@@ -1,6 +1,5 @@
 use std::{fmt::Debug, io::Error as IoError, process::ExitCode};
 
-pub mod commands;
 mod util;
 
 pub type Result<T = ExitCode, E = Error> = std::result::Result<T, E>;
@@ -25,4 +24,8 @@ impl From<IoError> for Error {
     fn from(error: IoError) -> Self {
         Self::IoError(error)
     }
+}
+
+pub mod commands {
+    coreutils_macros::define_commands!();
 }
