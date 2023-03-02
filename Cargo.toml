@@ -38,57 +38,6 @@ who = []
 whoami = ["dep:libc", "dep:nix"]
 yes = []
 
-[[bin]]
-name = "arch"
-path = "bin/arch.rs"
-required-features = ["arch"]
-
-[[bin]]
-name = "b2sum"
-path = "bin/b2sum.rs"
-required-features = ["b2sum"]
-
-[[bin]]
-name = "base32"
-path = "bin/base32.rs"
-required-features = ["base32"]
-
-[[bin]]
-name = "base64"
-path = "bin/base64.rs"
-required-features = ["base64"]
-
-[[bin]]
-name = "basename"
-path = "bin/basename.rs"
-required-features = ["basename"]
-
-[[bin]]
-name = "basenc"
-path = "bin/basenc.rs"
-required-features = ["basenc"]
-
-[[bin]]
-name = "uname"
-path = "bin/uname.rs"
-required-features = ["uname"]
-
-[[bin]]
-name = "uptime"
-path = "bin/uptime.rs"
-required-features = ["uptime"]
-
-[[bin]]
-name = "whoami"
-path = "bin/whoami.rs"
-required-features = ["whoami"]
-
-[[bin]]
-name = "yes"
-path = "bin/yes.rs"
-required-features = ["yes"]
-
-
 [profile.release]
 lto = true
 codegen-units = 1
