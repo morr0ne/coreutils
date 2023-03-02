@@ -1,1 +1,0 @@
-coreutils_macros::import_commands!("src/commands");
