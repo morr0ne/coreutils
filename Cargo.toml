@@ -59,9 +59,9 @@ path = "bin/base64.rs"
 required-features = ["base64"]
 
 [[bin]]
-name = "basenane"
-path = "bin/basenane.rs"
-required-features = ["basenane"]
+name = "basename"
+path = "bin/basename.rs"
+required-features = ["basename"]
 
 [[bin]]
 name = "basenc"
