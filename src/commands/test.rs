@@ -3,11 +3,12 @@ use std::{env::Args, process::ExitCode};
 use crate::{util::new_command, Result};
 
 // TODO: Implement command
+// TODO: Never used this command before, no clue what it does or why it doesn't print an help thingy
 
-pub fn who(args: Args, multicall: bool) -> Result {
+pub fn test(args: Args, multicall: bool) -> Result {
     let matches = new_command(
-        "who",
-        "Print information about users who are currently logged in",
+        "test",
+        "Does something??",
         multicall,
     )
     .get_matches_from(args);

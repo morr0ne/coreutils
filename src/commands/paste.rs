@@ -4,10 +4,10 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn who(args: Args, multicall: bool) -> Result {
+pub fn paste(args: Args, multicall: bool) -> Result {
     let matches = new_command(
-        "who",
-        "Print information about users who are currently logged in",
+        "paste",
+        "Write lines consisting of the sequentially corresponding lines from each FILE, separated by TABs, to standard output",
         multicall,
     )
     .get_matches_from(args);
