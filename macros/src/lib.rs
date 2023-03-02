@@ -1,37 +1,44 @@
 use proc_macro::TokenStream;
-use quote::quote;
-use syn::{parse::Parse, parse_macro_input, punctuated::Punctuated, Ident, Token};
+use quote::{format_ident, quote};
+use syn::{parse::Parse, parse_macro_input, punctuated::Punctuated, Ident, LitStr, Token};
 
 struct Input {
-    commands: Punctuated<Ident, Option<Token![,]>>,
+    matcher: Ident,
+    _separator: Token![,],
+    commands: Punctuated<LitStr, Option<Token![,]>>,
 }
 
 impl Parse for Input {
     fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
         Ok(Input {
-            commands: input.parse_terminated(Ident::parse)?,
+            matcher: input.parse()?,
+            _separator: input.parse()?,
+            commands: Punctuated::parse_terminated(input)?,
         })
     }
 }
 
 #[proc_macro]
-pub fn call_commands(tokens: TokenStream) -> TokenStream {
-    let Input { commands } = parse_macro_input!(tokens);
+pub fn define_commands(tokens: TokenStream) -> TokenStream {
+    let Input {
+        matcher, commands, ..
+    } = parse_macro_input!(tokens);
 
     let mut fields = Vec::new();
 
     for command in commands {
-        let lit = command.to_string();
+        let command_function = format_ident!("{}", command.value());
         fields.push(quote! {
-            #[cfg(feature = #lit)]
-            #lit => commands::#command(args, true)
+            #[cfg(feature = #command)]
+            #command => commands::#command_function(args, true),
         })
     }
-    // #(#fields),*
 
     quote! {
-
-         "whoami" => commands::whoami(args, true)
+        match #matcher.as_str() {
+            #(#fields)*
+            command => Err(Error::UnknownCommand(command.to_string())),
+        }
     }
     .into()
 }
