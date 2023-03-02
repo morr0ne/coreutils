@@ -4,10 +4,10 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn who(args: Args, multicall: bool) -> Result {
+pub fn realpath(args: Args, multicall: bool) -> Result {
     let matches = new_command(
-        "who",
-        "Print information about users who are currently logged in",
+        "realpath",
+        "Print the resolved absolute file name",
         multicall,
     )
     .get_matches_from(args);

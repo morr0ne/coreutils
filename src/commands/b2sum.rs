@@ -5,7 +5,6 @@ use clap::{builder::ValueParser, Arg, ArgAction};
 
 use crate::{util::new_command, Result};
 
-
 // TODO: Actually parse all the args.
 // TODO: Don't panic
 

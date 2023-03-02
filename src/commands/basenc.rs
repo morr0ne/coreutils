@@ -20,9 +20,17 @@ pub fn basenc(args: Args, multicall: bool) -> Result {
                 .value_parser(ValueParser::os_string()),
         )
         .arg(Arg::new("base64").long("base64").action(ArgAction::SetTrue))
-        .arg(Arg::new("base64url").long("base64url").action(ArgAction::SetTrue))
+        .arg(
+            Arg::new("base64url")
+                .long("base64url")
+                .action(ArgAction::SetTrue),
+        )
         .arg(Arg::new("base32").long("base32").action(ArgAction::SetTrue))
-        .arg(Arg::new("base32hex").long("base32hex").action(ArgAction::SetTrue))
+        .arg(
+            Arg::new("base32hex")
+                .long("base32hex")
+                .action(ArgAction::SetTrue),
+        )
         .arg(Arg::new("base16").long("base16").action(ArgAction::SetTrue))
         .get_matches_from(args);
 

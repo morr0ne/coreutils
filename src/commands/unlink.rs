@@ -4,10 +4,10 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn who(args: Args, multicall: bool) -> Result {
+pub fn unlink(args: Args, multicall: bool) -> Result {
     let matches = new_command(
-        "who",
-        "Print information about users who are currently logged in",
+        "unlink",
+        "Call the unlink function to remove the specified FILE",
         multicall,
     )
     .get_matches_from(args);

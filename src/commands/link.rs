@@ -4,10 +4,10 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn who(args: Args, multicall: bool) -> Result {
+pub fn link(args: Args, multicall: bool) -> Result {
     let matches = new_command(
-        "who",
-        "Print information about users who are currently logged in",
+        "link",
+        "Call the link function to create a link named FILE2 to an existing FILE1.",
         multicall,
     )
     .get_matches_from(args);

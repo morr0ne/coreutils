@@ -4,10 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn who(args: Args, multicall: bool) -> Result {
+pub fn printenv(args: Args, multicall: bool) -> Result {
     let matches = new_command(
-        "who",
-        "Print information about users who are currently logged in",
+        "printenv",
+        "Print the values of the specified environment VARIABLE(s).
+        If no VARIABLE is specified, print name and value pairs for them all",
         multicall,
     )
     .get_matches_from(args);
