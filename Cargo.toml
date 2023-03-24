@@ -12,32 +12,6 @@ repository = "https://github.com/morr0ne/coreutils"
 readme = "README.md"
 publish = false
 
-[dependencies]
-coreutils_macros = { version = "0.0.1", path = "./macros"}
-clap = { version = "4.1.4", default-features = false, features = ["std", "help", "cargo"] }
-libc = { version = "0.2.139", optional = true }
-nix = { version = "0.26.2", default-features = false, features = ["term"], optional = true }
-blake2 = { version = "0.10.6", optional = true }
-hex = { version = "0.4.3", optional = true }
-data-encoding = { version = "2.3.3", optional = true }
-# static_args = "0.2.1"
-
-[features]
-arch = ["dep:libc"]
-b2sum = ["dep:blake2", "dep:hex"]
-base32 = ["dep:data-encoding"]
-base64 = ["dep:data-encoding"]
-basenc = ["dep:data-encoding"]
-basename = []
-false = []
-true = []
-tty = ["dep:nix"]
-uname = ["dep:libc"]
-uptime = []
-who = []
-whoami = ["dep:libc", "dep:nix"]
-yes = []
-
 [profile.release]
 lto = true
 codegen-units = 1
@@ -47,3 +21,85 @@ panic = "abort"
 [profile.bloat]
 inherits = "release"
 strip = false
+
+
+[dependencies]
+coreutils_macros = { version = "0.0.1", path = "./macros"}
+clap = { version = "4.1.4", default-features = false, features = ["std", "help", "cargo"] }
+libc = { version = "0.2.139", optional = true }
+nix = { version = "0.26.2", default-features = false, features = ["term"], optional = true }
+blake2 = { version = "0.10.6", optional = true }
+hex = { version = "0.4.3", optional = true }
+data-encoding = { version = "2.3.3", optional = true }
+rustix = { version = "0.37.3", default-features = false }
+# static_args = "0.2.1"
+
+[features]
+arch = ["dep:libc"]
+b2sum = ["dep:blake2", "dep:hex"]
+base32 = ["dep:data-encoding"]
+base64 = ["dep:data-encoding"]
+basename = []
+basenc = ["dep:data-encoding"]
+cat = []
+chcon = []
+chgrp = []
+chmod = []
+chown = []
+chroot = []
+cksum = []
+comm = []
+cp = []
+csplit = []
+cut = []
+date = []
+dd = []
+df = []
+dir = []
+dircolors = []
+dirname = []
+du = []
+echo = []
+env = []
+expand = []
+expr = []
+factor = []
+false = []
+fmt = []
+fold = []
+groups = []
+head = []
+hostid = []
+hostname = []
+id = []
+install = []
+join = []
+kill = []
+link = []
+ln = []
+logname = []
+ls = []
+md5sum = []
+mkdir = []
+mkfifo = []
+mknod = []
+mktemp = []
+mv = []
+nice = []
+nl = []
+nohup = []
+nproc = []
+numfmt = []
+od = []
+paste = []
+pathchk = []
+pinky = []
+pr = []
+true = []
+tty = ["dep:nix"]
+uname = ["dep:libc"]
+uptime = []
+who = []
+whoami = ["dep:libc", "dep:nix"]
+yes = []
+
