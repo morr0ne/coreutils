@@ -6,6 +6,7 @@ image = "ghcr.io/cross-rs/x86_64-apple-darwin-cross:local"
 
 [build.env]
 passthrough = [
+    "RUSTFLAGS",
     "RUST_BACKTRACE",
     "RUST_LOG",
 ]
