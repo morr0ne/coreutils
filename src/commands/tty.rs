@@ -4,11 +4,11 @@ use nix::unistd::ttyname;
 
 use crate::{util::new_command, Result};
 
-pub fn tty(args: Args, multicall: bool) -> Result {
+pub fn tty(args: Args) -> Result {
     new_command(
         "tty",
         "Print the file name of the terminal connected to standard input",
-        multicall,
+        
     )
     .get_matches_from(args);
 

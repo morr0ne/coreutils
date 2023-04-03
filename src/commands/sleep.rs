@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn sleep(args: Args, multicall: bool) -> Result {
+pub fn sleep(args: Args) -> Result {
     let matches = new_command(
         "sleep",
         "Pause for NUMBER seconds",
-        multicall,
+        
     )
     .get_matches_from(args);
 

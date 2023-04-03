@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn nl(args: Args, multicall: bool) -> Result {
+pub fn nl(args: Args) -> Result {
     let matches = new_command(
         "nl",
         "Write each FILE to standard output, with line numbers added",
-        multicall,
+        
     )
     .get_matches_from(args);
 

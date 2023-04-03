@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn tail(args: Args, multicall: bool) -> Result {
+pub fn tail(args: Args) -> Result {
     let matches = new_command(
         "tail",
         "Print the last 10 lines of each FILE to standard output",
-        multicall,
+        
     )
     .get_matches_from(args);
 

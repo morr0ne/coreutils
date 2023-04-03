@@ -9,11 +9,11 @@ use rustix::process::geteuid;
 
 use crate::{util::new_command, Result};
 
-pub fn whoami(args: Args, multicall: bool) -> Result {
+pub fn whoami(args: Args) -> Result {
     new_command(
         "whoami",
         "Print the user name associated with the current effective user ID",
-        multicall,
+        
     )
     .get_matches_from(args);
 

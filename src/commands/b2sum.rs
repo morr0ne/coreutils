@@ -8,8 +8,8 @@ use crate::{util::new_command, Result};
 // TODO: Actually parse all the args.
 // TODO: Don't panic
 
-pub fn b2sum(args: Args, multicall: bool) -> Result {
-    let matches = new_command("b2sum", "Compute or check BLAKE2b checksums", multicall)
+pub fn b2sum(args: Args) -> Result {
+    let matches = new_command("b2sum", "Compute or check BLAKE2b checksums")
         .arg(
             Arg::new("binary")
                 .short('b')

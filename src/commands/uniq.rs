@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn uniq(args: Args, multicall: bool) -> Result {
+pub fn uniq(args: Args) -> Result {
     let matches = new_command(
         "uniq",
         "Filter adjacent matching lines from INPUT (or standard input),writing to OUTPUT (or standard output)",
-        multicall,
+        
     )
     .get_matches_from(args);
 

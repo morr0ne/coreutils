@@ -5,9 +5,9 @@ use clap::{builder::ValueParser, Arg, ArgAction};
 
 use crate::{util::new_command, Result};
 
-pub fn uptime(args: Args, multicall: bool) -> Result {
+pub fn uptime(args: Args) -> Result {
     let matches =
-        new_command("uptime", "Prints the system uptime", multicall).get_matches_from(args);
+        new_command("uptime", "Prints the system uptime").get_matches_from(args);
 
     Ok(ExitCode::SUCCESS)
 }

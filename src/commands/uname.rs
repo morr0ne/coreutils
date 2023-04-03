@@ -13,8 +13,8 @@ use crate::{util::new_command, Result};
 // TODO: Default to print to kernel-name
 // TODO: Trim trailing space
 
-pub fn uname(args: Args, multicall: bool) -> Result {
-    let matches = new_command("uname", "Print system informations", multicall)
+pub fn uname(args: Args) -> Result {
+    let matches = new_command("uname", "Print system informations")
         .arg(
             Arg::new("all")
                 .short('a')
