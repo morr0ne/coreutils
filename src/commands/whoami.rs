@@ -5,6 +5,8 @@ use std::{
     process::ExitCode,
 };
 
+use rustix::process::geteuid;
+
 use crate::{util::new_command, Result};
 
 pub fn whoami(args: Args, multicall: bool) -> Result {
@@ -15,11 +17,11 @@ pub fn whoami(args: Args, multicall: bool) -> Result {
     )
     .get_matches_from(args);
 
-    let uid = unsafe { libc::geteuid() };
-    let pw = unsafe { libc::getpwuid(uid) };
+    let uid = geteuid();
+    let pw = unsafe { libc::getpwuid(uid.as_raw()) };
 
     if pw.is_null() {
-        eprintln!("cannot find name for user ID {uid}");
+        eprintln!("cannot find name for user ID {}", uid.as_raw());
     } else {
         let name = unsafe { CStr::from_ptr((*pw).pw_name) };
 
