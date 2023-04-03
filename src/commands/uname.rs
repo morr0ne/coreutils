@@ -6,11 +6,9 @@ use std::{
 };
 
 use clap::{Arg, ArgAction};
+use rustix::process::uname as rustix_uname;
 
-use crate::{
-    util::{get_uname, new_command},
-    Result,
-};
+use crate::{util::new_command, Result};
 
 // TODO: Default to print to kernel-name
 // TODO: Trim trailing space
@@ -73,38 +71,33 @@ pub fn uname(args: Args, multicall: bool) -> Result {
         )
         .get_matches_from(args);
 
-    let utsname = get_uname()?;
+    let uname = rustix_uname();
     let mut lock = stdout().lock();
 
     let all = matches.get_flag("all");
 
     if matches.get_flag("kernel-name") || all {
-        let sysname = unsafe { CStr::from_ptr(utsname.sysname.as_ptr()) };
-        lock.write_all(sysname.to_bytes())?;
+        lock.write_all(uname.sysname().to_bytes())?;
         lock.write_all(b" ")?;
     }
 
     if matches.get_flag("nodename") || all {
-        let nodename = unsafe { CStr::from_ptr(utsname.nodename.as_ptr()) };
-        lock.write_all(nodename.to_bytes())?;
+        lock.write_all(uname.nodename().to_bytes())?;
         lock.write_all(b" ")?;
     }
 
     if matches.get_flag("kernel-release") || all {
-        let release = unsafe { CStr::from_ptr(utsname.release.as_ptr()) };
-        lock.write_all(release.to_bytes())?;
+        lock.write_all(uname.release().to_bytes())?;
         lock.write_all(b" ")?;
     }
 
     if matches.get_flag("kernel-version") || all {
-        let version = unsafe { CStr::from_ptr(utsname.version.as_ptr()) };
-        lock.write_all(version.to_bytes())?;
+        lock.write_all(uname.version().to_bytes())?;
         lock.write_all(b" ")?;
     }
 
     if matches.get_flag("machine") || all {
-        let machine = unsafe { CStr::from_ptr(utsname.machine.as_ptr()) };
-        lock.write_all(machine.to_bytes())?;
+        lock.write_all(uname.machine().to_bytes())?;
         lock.write_all(b" ")?;
     }
 
