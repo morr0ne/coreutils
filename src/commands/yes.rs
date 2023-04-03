@@ -6,7 +6,11 @@ The gnu implementation is actually much smarter than this and does some fancy st
 Eventually this will implemented more optimaly but it is essentially the correct behaviour beside the speed.
 */
 
-use std::{borrow::Cow, env::Args};
+use std::{
+    borrow::Cow,
+    env::Args,
+    io::{stdout, Write},
+};
 
 use clap::{Arg, ArgAction};
 
@@ -16,7 +20,6 @@ pub fn yes(args: Args) -> Result {
     let matches = new_command(
         "yes",
         "Repeatedly output a line with all specified STRING(s), or 'y'.",
-        
     )
     .arg(Arg::new("STRING").action(ArgAction::Append))
     .get_matches_from(args);
@@ -28,7 +31,9 @@ pub fn yes(args: Args) -> Result {
         Cow::Borrowed("y")
     };
 
+    let mut stdout = stdout().lock();
+
     loop {
-        println!("{value}")
+        writeln!(&mut stdout, "{value}")?
     }
 }
