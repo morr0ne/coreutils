@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn sync(args: Args, multicall: bool) -> Result {
+pub fn sync(args: Args) -> Result {
     let matches = new_command(
         "sync",
         "Synchronize cached writes to persistent storage",
-        multicall,
+        
     )
     .get_matches_from(args);
 

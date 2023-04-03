@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn fmt(args: Args, multicall: bool) -> Result {
+pub fn fmt(args: Args) -> Result {
     let matches = new_command(
         "fmt",
         "Reformat each paragraph in the FILE(s), writing to standard output",
-        multicall,
+        
     )
     .get_matches_from(args);
 

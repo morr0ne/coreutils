@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn rmdir(args: Args, multicall: bool) -> Result {
+pub fn rmdir(args: Args) -> Result {
     let matches = new_command(
         "rmdir",
         "Remove the DIRECTORY(ies), if they are empty",
-        multicall,
+        
     )
     .get_matches_from(args);
 

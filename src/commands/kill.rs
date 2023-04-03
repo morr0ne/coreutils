@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn kill(args: Args, multicall: bool) -> Result {
+pub fn kill(args: Args) -> Result {
     let matches = new_command(
         "kill",
         "Forcibly terminate a process",
-        multicall,
+        
     )
     .get_matches_from(args);
 

@@ -9,8 +9,8 @@ use crate::{util::new_command, Result};
 // TODO: handle all args
 // TODO: column wrap
 
-pub fn basenc(args: Args, multicall: bool) -> Result {
-    let matches = new_command("basenc", "basenc encode or decode FILE,", multicall)
+pub fn basenc(args: Args) -> Result {
+    let matches = new_command("basenc", "basenc encode or decode FILE,")
         .arg(
             Arg::new("FILE")
                 .index(1)

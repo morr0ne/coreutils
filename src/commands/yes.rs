@@ -12,11 +12,11 @@ use clap::{Arg, ArgAction};
 
 use crate::{util::new_command, Result};
 
-pub fn yes(args: Args, multicall: bool) -> Result {
+pub fn yes(args: Args) -> Result {
     let matches = new_command(
         "yes",
         "Repeatedly output a line with all specified STRING(s), or 'y'.",
-        multicall,
+        
     )
     .arg(Arg::new("STRING").action(ArgAction::Append))
     .get_matches_from(args);

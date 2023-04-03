@@ -23,7 +23,7 @@ pub fn call_commands(tokens: TokenStream) -> TokenStream {
         let module_ident = format_ident!("{}", command);
         fields.push(quote! {
             #[cfg(feature = #command)]
-            #command => coreutils::commands::#module_ident(args, true),
+            #command => coreutils::commands::#module_ident(args),
         })
     }
 

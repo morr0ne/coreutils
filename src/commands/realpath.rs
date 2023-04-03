@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn realpath(args: Args, multicall: bool) -> Result {
+pub fn realpath(args: Args) -> Result {
     let matches = new_command(
         "realpath",
         "Print the resolved absolute file name",
-        multicall,
+        
     )
     .get_matches_from(args);
 

@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn tee(args: Args, multicall: bool) -> Result {
+pub fn tee(args: Args) -> Result {
     let matches = new_command(
         "tee",
         "Copy standard input to each FILE, and also to standard output",
-        multicall,
+        
     )
     .get_matches_from(args);
 

@@ -4,11 +4,11 @@ use crate::{util::new_command, Result};
 
 // TODO: Implement command
 
-pub fn sum(args: Args, multicall: bool) -> Result {
+pub fn sum(args: Args) -> Result {
     let matches = new_command(
         "sum",
         "Print or check BSD (16-bit) checksums",
-        multicall,
+        
     )
     .get_matches_from(args);
 

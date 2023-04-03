@@ -8,8 +8,8 @@ use crate::{util::new_command, Result};
 // TODO: handle all args
 // TODO: column wrap
 
-pub fn base64(args: Args, multicall: bool) -> Result {
-    let matches = new_command("base64", "Base64 encode or decode FILE,", multicall)
+pub fn base64(args: Args) -> Result {
+    let matches = new_command("base64", "Base64 encode or decode FILE,")
         .arg(
             Arg::new("FILE")
                 .index(1)
