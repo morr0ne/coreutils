@@ -9,6 +9,7 @@ pub fn call_commands(tokens: TokenStream) -> TokenStream {
     let args = parse_macro_input!(tokens as Ident);
 
     let commands = get_commands("src/commands");
+    let commands_help = format!("Currently defined commands: {commands:?}");
 
     let mut fields = Vec::new();
 
@@ -33,7 +34,8 @@ pub fn call_commands(tokens: TokenStream) -> TokenStream {
                 command => Err(Error::UnknownCommand(command.to_string())),
             }
         } else {
-            Err(Error::NoCommand)
+            println!(#commands_help);
+            return Ok(::std::process::ExitCode::SUCCESS)
         }
     }
     .into()
