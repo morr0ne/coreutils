@@ -1,4 +1,4 @@
-use std::{env::Args, ffi::OsString, fs, path::PathBuf, process::ExitCode};
+use std::{env::Args, fs, path::Path, process::ExitCode};
 
 use blake2::{Blake2b512, Digest};
 use lexopt::prelude::*;
@@ -15,7 +15,7 @@ pub fn b2sum(args: Args) -> Result {
 
         while let Some(arg) = parser.next()? {
             match arg {
-                Value(value) => files.push(PathBuf::from(value)),
+                Value(value) => files.push(value),
                 Long("help") => {
                     println!("Usage: b2sum");
                     return Ok(ExitCode::SUCCESS);
@@ -27,15 +27,21 @@ pub fn b2sum(args: Args) -> Result {
         files
     };
 
-    let file = fs::read(&files[0]).expect("Failed to read file");
+    for path in files {
+        let file = fs::read(&path).expect("Failed to read file"); // TODO: Error handling
 
-    let mut hasher = Blake2b512::new();
+        let mut hasher = Blake2b512::new();
 
-    hasher.update(file);
+        hasher.update(file);
 
-    let hash = hasher.finalize();
+        let hash = hasher.finalize();
 
-    println!("{}", hex::encode(hash));
+        println!(
+            "{}  {}",
+            hex::encode(hash),
+            Path::new(&path).file_name().unwrap().to_str().unwrap()
+        ); // TODO: Error handling
+    }
 
     Ok(ExitCode::SUCCESS)
 }
