@@ -1,42 +1,33 @@
-use std::{env::Args, ffi::OsString, fs, process::ExitCode};
+use std::{env::Args, ffi::OsString, fs, path::PathBuf, process::ExitCode};
 
 use blake2::{Blake2b512, Digest};
-use clap::{builder::ValueParser, Arg, ArgAction};
+use lexopt::prelude::*;
 
-use crate::{util::new_command, Result};
+use crate::Result;
 
 // TODO: Actually parse all the args.
 // TODO: Don't panic
 
 pub fn b2sum(args: Args) -> Result {
-    let matches = new_command("b2sum", "Compute or check BLAKE2b checksums")
-        .arg(
-            Arg::new("binary")
-                .short('b')
-                .long("binary")
-                .action(ArgAction::SetTrue),
-        )
-        .arg(
-            Arg::new("check")
-                .short('c')
-                .long("check")
-                .action(ArgAction::SetTrue),
-        )
-        .arg(
-            Arg::new("FILE")
-                .index(1)
-                .action(ArgAction::Append)
-                .value_name("FILE")
-                .value_hint(clap::ValueHint::FilePath)
-                .value_parser(ValueParser::os_string()),
-        )
-        .get_matches_from(args);
+    let files = {
+        let mut files = Vec::new();
+        let mut parser = lexopt::Parser::from_args(args);
 
-    let file = matches
-        .get_one::<OsString>("FILE")
-        .expect("Failed to get arg");
+        while let Some(arg) = parser.next()? {
+            match arg {
+                Value(value) => files.push(PathBuf::from(value)),
+                Long("help") => {
+                    println!("Usage: b2sum");
+                    return Ok(ExitCode::SUCCESS);
+                }
+                _ => return Err(arg.unexpected().into()),
+            }
+        }
 
-    let file = fs::read(file).expect("Failed to read file");
+        files
+    };
+
+    let file = fs::read(&files[0]).expect("Failed to read file");
 
     let mut hasher = Blake2b512::new();
 
