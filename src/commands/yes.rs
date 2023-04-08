@@ -40,7 +40,7 @@ pub fn yes(args: Args) -> Result {
             }
         }
 
-        string.unwrap_or("y".to_string())
+        string.map(|s| Cow::Owned(s)).unwrap_or(Cow::Borrowed("y"))
     };
 
     let mut stdout = stdout().lock();
