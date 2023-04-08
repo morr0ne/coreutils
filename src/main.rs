@@ -7,6 +7,8 @@ fn main() -> Result {
         match arg.as_str() {
             // #[cfg(feature = "arch")]
             // "arch" => coreutils::commands::arch::arch(args),
+            #[cfg(feature = "b2sum")]
+            "b2sum" => coreutils::commands::b2sum::b2sum(args),
             #[cfg(feature = "yes")]
             "yes" => coreutils::commands::yes::yes(args),
             _ => Err(Error::UnknownCommand(arg)),
