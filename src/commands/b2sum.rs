@@ -1,4 +1,4 @@
-use std::{env::Args, fs, path::Path, process::ExitCode};
+use std::{env::Args, ffi::OsStr, fs, path::Path, process::ExitCode, io::{stdin, Read}};
 
 use blake2::{Blake2b512, Digest};
 use lexopt::prelude::*;
@@ -28,7 +28,14 @@ pub fn b2sum(args: Args) -> Result {
     };
 
     for path in files {
-        let file = fs::read(&path).expect("Failed to read file"); // TODO: Error handling
+        let file = if path == OsStr::new("-") {
+            let mut buf = Vec::new();
+            let stdin = stdin().lock().read_to_end(&mut buf).unwrap();
+            buf
+        } else {
+            // TODO: Error handling
+            fs::read(&path).expect("Failed to read file")
+        };
 
         let mut hasher = Blake2b512::new();
 
