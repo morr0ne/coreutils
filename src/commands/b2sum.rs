@@ -1,4 +1,11 @@
-use std::{env::Args, ffi::OsStr, fs, path::Path, process::ExitCode, io::{stdin, Read}};
+use std::{
+    env::Args,
+    ffi::{OsStr, OsString},
+    fs,
+    io::{stdin, Read},
+    path::Path,
+    process::ExitCode,
+};
 
 use blake2::{Blake2b512, Digest};
 use lexopt::prelude::*;
@@ -22,6 +29,10 @@ pub fn b2sum(args: Args) -> Result {
                 }
                 _ => return Err(arg.unexpected().into()),
             }
+        }
+
+        if files.is_empty() {
+            files.push(OsString::from("-"))
         }
 
         files
