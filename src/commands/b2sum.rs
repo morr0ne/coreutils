@@ -43,7 +43,7 @@ pub fn b2sum(args: Args) -> Result {
     for path in files {
         let file = if path == OsStr::new("-") {
             let mut buf = Vec::new();
-            let stdin = stdin().lock().read_to_end(&mut buf)?;
+            stdin().lock().read_to_end(&mut buf)?;
             buf
         } else {
             fs::read(&path)?
