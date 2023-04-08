@@ -10,30 +10,42 @@ use std::{
     borrow::Cow,
     env::Args,
     io::{stdout, Write},
+    process::ExitCode,
 };
 
-use clap::{Arg, ArgAction};
+use lexopt::prelude::*;
 
-use crate::{util::new_command, Result};
+use crate::Result;
 
 pub fn yes(args: Args) -> Result {
-    let matches = new_command(
-        "yes",
-        "Repeatedly output a line with all specified STRING(s), or 'y'.",
-    )
-    .arg(Arg::new("STRING").action(ArgAction::Append))
-    .get_matches_from(args);
+    let string = {
+        let mut string: Option<String> = None;
+        let mut parser = lexopt::Parser::from_args(args);
 
-    let value = if let Some(values) = matches.get_many::<String>("STRING") {
-        let value: String = values.flat_map(|s| s.chars()).collect();
-        Cow::Owned(value)
-    } else {
-        Cow::Borrowed("y")
+        while let Some(arg) = parser.next()? {
+            match arg {
+                Value(value) => {
+                    if let Some(string) = &mut string {
+                        string.push_str(" ");
+                        string.push_str(&value.string()?)
+                    } else {
+                        string = Some(value.string()?);
+                    }
+                }
+                Long("help") => {
+                    println!("Usage: yes");
+                    return Ok(ExitCode::SUCCESS);
+                }
+                _ => return Err(arg.unexpected().into()),
+            }
+        }
+
+        string.unwrap_or("y".to_string())
     };
 
     let mut stdout = stdout().lock();
 
     loop {
-        writeln!(&mut stdout, "{value}")?
+        writeln!(&mut stdout, "{string}")?
     }
 }

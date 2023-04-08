@@ -1,6 +1,8 @@
 use std::{fmt::Debug, io::Error as IoError, process::ExitCode};
 
-mod util;
+use lexopt::Error as ParseError;
+
+pub mod commands;
 
 pub type Result<T = ExitCode, E = Error> = std::result::Result<T, E>;
 
@@ -8,6 +10,7 @@ pub enum Error {
     NoCommand,
     UnknownCommand(String),
     IoError(IoError),
+    ParseError(ParseError),
 }
 
 impl Debug for Error {
@@ -16,6 +19,7 @@ impl Debug for Error {
             Self::NoCommand => write!(f, "No command specified"),
             Self::UnknownCommand(command) => write!(f, "{command} is not a valid command"),
             Self::IoError(error) => error.fmt(f),
+            Self::ParseError(error) => error.fmt(f),
         }
     }
 }
@@ -26,6 +30,8 @@ impl From<IoError> for Error {
     }
 }
 
-pub mod commands {
-    coreutils_macros::define_commands!();
+impl From<ParseError> for Error {
+    fn from(error: ParseError) -> Self {
+        Self::ParseError(error)
+    }
 }
