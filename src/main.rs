@@ -5,8 +5,8 @@ fn main() -> Result {
 
     if let Some(arg) = args.nth(1) {
         match arg.as_str() {
-            // #[cfg(feature = "arch")]
-            // "arch" => coreutils::commands::arch::arch(args),
+            #[cfg(feature = "arch")]
+            "arch" => coreutils::commands::arch::arch(args),
             #[cfg(feature = "b2sum")]
             "b2sum" => coreutils::commands::b2sum::b2sum(args),
             #[cfg(feature = "whoami")]
