@@ -9,6 +9,8 @@ fn main() -> Result {
             "arch" => coreutils::commands::arch::arch(args),
             #[cfg(feature = "b2sum")]
             "b2sum" => coreutils::commands::b2sum::b2sum(args),
+            #[cfg(feature = "tty")]
+            "tty" => coreutils::commands::tty::tty(args),
             #[cfg(feature = "whoami")]
             "whoami" => coreutils::commands::whoami::whoami(args),
             #[cfg(feature = "yes")]
