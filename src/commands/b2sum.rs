@@ -1,8 +1,8 @@
 use std::{
     env::Args,
     ffi::{OsStr, OsString},
-    fs,
-    io::{stdin, stdout, Read, Write},
+    fs::File,
+    io::{self, stdin, stdout, Write},
     os::unix::ffi::OsStrExt,
     path::Path,
     process::ExitCode,
@@ -41,17 +41,15 @@ pub fn b2sum(args: Args) -> Result {
     };
 
     for path in files {
-        let file = if path == OsStr::new("-") {
-            let mut buf = Vec::new();
-            stdin().lock().read_to_end(&mut buf)?;
-            buf
-        } else {
-            fs::read(&path)?
-        };
-
         let mut hasher = Blake2b512::new();
 
-        hasher.update(file);
+        if path == OsStr::new("-") {
+            let mut stdin = stdin().lock();
+            io::copy(&mut stdin, &mut hasher)?;
+        } else {
+            let mut file = File::open(&path)?;
+            io::copy(&mut file, &mut hasher)?;
+        };
 
         let hash = hasher.finalize();
 
