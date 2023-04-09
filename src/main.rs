@@ -1,6 +1,6 @@
 use std::process::ExitCode;
 
-use coreutils::Error;
+use coreutils::{Error, Result};
 
 fn main() -> Result {
     let mut args = std::env::args();
