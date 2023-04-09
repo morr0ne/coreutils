@@ -1,4 +1,6 @@
-use coreutils::{Error, Result};
+use std::process::ExitCode;
+
+use coreutils::Error;
 
 fn main() -> Result {
     let mut args = std::env::args();
@@ -9,6 +11,8 @@ fn main() -> Result {
             "arch" => coreutils::commands::arch(args),
             #[cfg(feature = "b2sum")]
             "b2sum" => coreutils::commands::b2sum(args),
+            #[cfg(feature = "cksum")]
+            "cksum" => coreutils::commands::cksum(args),
             #[cfg(feature = "tty")]
             "tty" => coreutils::commands::tty(args),
             #[cfg(feature = "whoami")]
@@ -18,6 +22,6 @@ fn main() -> Result {
             _ => Err(Error::UnknownCommand(arg)),
         }
     } else {
-        return Ok(::std::process::ExitCode::SUCCESS);
+        return Ok(ExitCode::SUCCESS);
     }
 }
