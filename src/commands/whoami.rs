@@ -1,6 +1,5 @@
 use std::{
     env::Args,
-    ffi::CStr,
     io::{stdout, Write},
     process::ExitCode,
 };
@@ -8,7 +7,7 @@ use std::{
 use lexopt::prelude::*;
 use rustix::process::geteuid;
 
-use crate::Result;
+use crate::{utils::passwd::Parser, Result};
 
 pub fn whoami(args: Args) -> Result {
     let mut parser = lexopt::Parser::from_args(args);
@@ -25,17 +24,21 @@ pub fn whoami(args: Args) -> Result {
     }
 
     let uid = geteuid();
-    let pw = unsafe { libc::getpwuid(uid.as_raw()) };
 
-    if pw.is_null() {
-        eprintln!("cannot find name for user ID {}", uid.as_raw());
-    } else {
-        let name = unsafe { CStr::from_ptr((*pw).pw_name) };
+    let mut parser = Parser::new()?;
 
-        let mut lock = stdout().lock();
-        lock.write_all(name.to_bytes())?;
-        lock.write_all(b"\n")?;
+    loop {
+        if let Some(entry) = parser.next_entry()? {
+            if entry.uid == uid {
+                let mut lock = stdout().lock();
+                writeln!(lock, "{}", entry.name);
+                break;
+            }
+        } else {
+            eprintln!("cannot find name for user ID {}", uid.as_raw());
+            break;
+        }
     }
 
-    Ok(ExitCode::SUCCESS)
+    return Ok(ExitCode::SUCCESS);
 }
