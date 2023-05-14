@@ -40,7 +40,6 @@ dependencies = [
  "data-encoding",
  "hex",
  "lexopt",
- "libc",
  "rustix",
 ]
 
