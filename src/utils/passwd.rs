@@ -7,15 +7,18 @@ use rustix::process::{Gid, Uid};
 
 use crate::Result;
 
+
+
+
 #[derive(Debug)]
 pub struct Passwd<'a> {
-    name: &'a str,
-    passwd: &'a str,
-    uid: Uid,
-    gid: Gid,
-    gecos: &'a str,
-    dir: &'a str,
-    shell: &'a str,
+    pub name: &'a str,
+    pub passwd: &'a str,
+    pub uid: Uid,
+    pub gid: Gid,
+    pub gecos: &'a str,
+    pub dir: &'a str,
+    pub shell: &'a str,
 }
 
 pub struct Parser<R> {
