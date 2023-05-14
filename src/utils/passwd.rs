@@ -7,9 +7,6 @@ use rustix::process::{Gid, Uid};
 
 use crate::Result;
 
-
-
-
 #[derive(Debug)]
 pub struct Passwd<'a> {
     pub name: &'a str,
