@@ -26,6 +26,7 @@ data-encoding = "2.3.3"
 rustix = { version = "0.38.8", default-features = false, features = [
     "process",
     "procfs",
+    "stdio",
     "system",
     "termios",
 ] }
