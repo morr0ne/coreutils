@@ -24,8 +24,12 @@ strip = false
 blake2 = { version = "0.10.6", optional = true }
 hex = { version = "0.4.3", optional = true }
 data-encoding = { version = "2.3.3", optional = true }
-rustix = { version = "0.37.11", optional = true, default-features = false, features = ["process", "procfs", "std", "termios"] }
+rustix = { version = "0.38.8", optional = true, default-features = false, features = [
+    "process",
+    "system",
+] }
 lexopt = "0.3.0"
+lexopt_derive = "0.0.1-alpha"
 
 [features]
 arch = ["dep:rustix"]
@@ -134,4 +138,4 @@ vdir = []
 wc = []
 who = []
 whoami = ["dep:rustix"]
-yes = []
+yes = ["dep:rustix"]
