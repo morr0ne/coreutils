@@ -19,7 +19,6 @@ panic = "abort"
 inherits = "release"
 strip = false
 
-
 [dependencies]
 blake2 = { version = "0.10.6", optional = true }
 hex = { version = "0.4.3", optional = true }
