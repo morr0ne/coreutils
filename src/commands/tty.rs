@@ -5,7 +5,7 @@ use std::{
 };
 
 use lexopt::prelude::*;
-use rustix::{io::stdout as rustix_stdout, termios::ttyname};
+use rustix::{stdio::stdout as rustix_stdout, termios::ttyname};
 
 use crate::Result;
 
