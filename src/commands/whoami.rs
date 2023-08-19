@@ -4,24 +4,19 @@ use std::{
     process::ExitCode,
 };
 
-use lexopt::prelude::*;
+use lexopt_derive::Parser;
 use rustix::process::geteuid;
 
 use crate::{utils::passwd::Parser, Result};
 
-pub fn whoami(args: Args) -> Result {
-    let mut parser = lexopt::Parser::from_args(args);
+#[derive(Parser)]
+struct ParsedArgs {}
 
-    while let Some(arg) = parser.next()? {
-        if let Long("help") | Short('h') = arg {
-            println!(
-                "Usage: whoami\nPrint the user name associated with the current effective user ID"
-            );
-            return Ok(ExitCode::SUCCESS);
-        } else {
-            return Err(arg.unexpected().into());
-        }
-    }
+pub fn whoami(args: Args) -> Result {
+    ParsedArgs::parse(
+        args,
+        "Usage: whoami\nPrint the user name associated with the current effective user ID",
+    )?;
 
     let uid = geteuid();
 
