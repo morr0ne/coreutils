@@ -23,7 +23,7 @@ strip = false
 blake2 = "0.10.6"
 hex = "0.4.3"
 data-encoding = "2.3.3"
-rustix = { version = "0.38.8", default-features = false, features = [
+rustix = { version = "0.38.19", default-features = false, features = [
     "process",
     "procfs",
     "std",
