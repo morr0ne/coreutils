@@ -22,14 +22,14 @@ strip = false
 [dependencies]
 blake2 = "0.10.6"
 hex = "0.4.3"
-data-encoding = "2.3.3"
-rustix = { version = "0.38.8", default-features = false, features = [
+data-encoding = "2.8.0"
+rustix = { version = "1.0.2", default-features = false, features = [
     "process",
-    "procfs",
     "std",
     "stdio",
     "system",
     "termios",
+    "fs",
 ] }
 lexopt = "0.3.0"
 lexopt_derive = "0.0.1-alpha"
