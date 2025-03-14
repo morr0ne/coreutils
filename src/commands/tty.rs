@@ -1,6 +1,6 @@
 use std::{
     env::Args,
-    io::{stdout, Write},
+    io::{Write, stdout},
     process::ExitCode,
 };
 

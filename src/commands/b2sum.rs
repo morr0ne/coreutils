@@ -2,7 +2,7 @@ use std::{
     env::Args,
     ffi::{OsStr, OsString},
     fs::File,
-    io::{self, stdin, stdout, Write},
+    io::{self, Write, stdin, stdout},
     os::unix::ffi::OsStrExt,
     path::Path,
     process::ExitCode,

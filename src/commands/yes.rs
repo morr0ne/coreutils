@@ -9,7 +9,7 @@ Eventually this will implemented more optimaly but it is essentially the correct
 use std::{
     borrow::Cow,
     env::Args,
-    io::{stdout, Write},
+    io::{Write, stdout},
     process::ExitCode,
 };
 

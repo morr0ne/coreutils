@@ -1,13 +1,13 @@
 use std::{
     env::Args,
-    io::{stdout, Write},
+    io::{Write, stdout},
     process::ExitCode,
 };
 
 use lexopt_derive::Parser;
 use rustix::process::geteuid;
 
-use crate::{utils::passwd::Parser, Result};
+use crate::{Result, utils::passwd::Parser};
 
 #[derive(Parser)]
 struct ParsedArgs {}
